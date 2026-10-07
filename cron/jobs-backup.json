@@ -1,0 +1,111 @@
+{
+  "jobs": [
+    {
+      "id": "be6208bd2bbb",
+      "name": "Laporan pipeline reanalysis",
+      "prompt": "Periksa SEMUA proses PM2 di VPS, bukan hanya aplikasi saham. Jalankan `pm2 list`, `pm2 logs` untuk proses bermasalah, serta pemeriksaan pipeline saham dan database Aiven dari `/opt/saham` memakai venv dan `.env`: progress success/failed, sentiment, status database, updated_at terbaru. Periksa sistem: CPU usage/load, RAM used/available, disk usage, uptime. Jangan tampilkan secret, API key, password, atau connection string. Laporkan ringkas dalam Bahasa Indonesia dengan bagian: 1) Semua PM2, 2) Pipeline/database saham, 3) Sistem (CPU, RAM, disk, uptime), 4) Anomali. Jika tidak ada masalah/anomali, isi `Anomali: -`. Sebutkan jelas proses PM2 stopped/errored, restart meningkat, log error, atau resource kritis. Jangan mengubah kode atau merestart service.",
+      "skills": [],
+      "skill": null,
+      "model": "magang-kiro",
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0,6,12,18 * * *",
+        "display": "0 0,6,12,18 * * *"
+      },
+      "schedule_display": "0 0,6,12,18 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 20
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-10-02T22:30:40.278668+08:00",
+      "next_run_at": "2026-10-08T00:00:00+08:00",
+      "last_run_at": "2026-10-07T18:03:22.445642+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "failure_streak": 0,
+      "deliver": "origin",
+      "origin": {
+        "platform": "telegram",
+        "chat_id": "1241151070",
+        "chat_name": "keen That's",
+        "thread_id": null,
+        "user_id": "1241151070",
+        "scope_id": null
+      },
+      "enabled_toolsets": [
+        "terminal"
+      ],
+      "workdir": "/opt/saham",
+      "last_dispatch": {
+        "scheduled_at": "2026-10-07T18:00:00+08:00",
+        "dispatched_at": "2026-10-07T18:00:52.567814+08:00",
+        "lateness_seconds": 52.6,
+        "kind": "on_time"
+      },
+      "fire_claim": null
+    },
+    {
+      "id": "1f9f69a09a2f",
+      "name": "Magang Watchlist Pagi",
+      "prompt": "PENGUMUMAN: Kirim ke Telegram \"\ud83d\udfe2 SESI PAGI DIMULAI [jam WIB] - Hermes mulai screening sesi 1 (09:00-12:00)\" SEBELUM mulai tugas. Fase A Program Magang Trader (hari bursa). Tugas: buat WATCHLIST PAGI. FOKUS UTAMA: analisis sentimen chat Stockbit (market belum buka, screener belum bisa). Cek kondisi IHSG terkini, pilih 3-5 saham dengan thesis beli yang jelas memakai data OHLCV dari Supabase (stock_ohlcv) + news/sentiment dari Aiven (analyzed_news) + indikator teknikal (MA, RSI). Wajib ikuti risk rules: budget harian Rp3.2jt (2jt sesi pagi/siang + 1.2jt BSJP), max 10 ticker, gacha lot 2-20 per entry (catat gacha_roll), cap Rp800rb/ticker (skip bila 1 lot > 800rb), max hold 8 hari kerja, SL = ARB+4 poin, TP +6%. Kirim watchlist via Telegram dalam Bahasa Indonesia dengan format: TICKER | harga | thesis 1 kalimat | SL | TP.",
+      "skills": [
+        "magang-trader"
+      ],
+      "skill": "magang-trader",
+      "model": "magang-kiro",
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 9 * * 1-5",
+        "display": "50 9 * * 1-5"
+      },
+      "schedule_display": "50 9 * * 1-5",
+      "repeat": {
+        "times": null,
+        "completed": 4
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-10-05T09:49:54.394498+08:00",
+      "next_run_at": "2026-10-08T09:50:00+08:00",
+      "last_run_at": "2026-10-07T10:03:18.862763+08:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "failure_streak": 0,
+      "deliver": "telegram:1241151070",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-10-07T09:50:00+08:00",
+        "dispatched_at": "2026-10-07T09:50:52.565107+08:00",
+        "lateness_seconds": 52.6,
+        "kind": "on_time"
+      },
+      "body": "Fase A Program Magang Trader (hari bursa). Tugas: ANALISIS SENTIMEN CHAT STOCKBIT PAGI (08:50 WIB, market belum buka).\n\nBuka Stockbit via browser automation, baca fitur chat/stream untuk saham-saham yang ramai dibahas trader. Analisis sentimen per ticker: bullish/bearish/neutral + ringkasan 1 kalimat alasan.\n\nOutput: kiri
